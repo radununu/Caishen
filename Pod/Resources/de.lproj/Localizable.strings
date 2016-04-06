@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Shiyuan Jiang on 4/6/16.
+
+*/
+
+"CVC_TEXTFIELD_ACCESSIBILITY_LABEL" = "Kartenprüfwert";
+"MONTH_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL" = "Verfallsdatum Monat";
+"NUMBER_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL" = "Kartennummer";
+"YEAR_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL" = "Verfallsdatum Jahr";
