@@ -32,4 +32,18 @@ public protocol CardTextFieldDelegate {
      - returns: Any action that is performed when the accessory button is tapped or nil, if no accessory button should be displayed in the text field.
      */
     func cardTextFieldShouldProvideAccessoryAction(cardTextField: CardTextField) -> (() -> ())?
+    
+    /**
+     Callback for a CardTextField, which is called to update the accessibility label of the accessory button
+     
+     - parameter cardTextField: The text field requesting a accessibility label for its accessory button.
+     - returns: The accessibility label for its accessory button
+     */
+    func cardTextFieldShouldProvideAccessoryButtonAccessibilityLabel(cardTextField: CardTextField) -> String?
+}
+
+public extension CardTextFieldDelegate {
+    func cardTextFieldShouldProvideAccessoryButtonAccessibilityLabel(cardTextField: CardTextField) -> String? {
+        return nil
+    }
 }

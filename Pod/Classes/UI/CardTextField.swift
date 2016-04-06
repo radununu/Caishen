@@ -294,6 +294,8 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         setupAccessibilityLabelForTextField(cvcTextField)
         setupAccessibilityLabelForTextField(monthTextField)
         setupAccessibilityLabelForTextField(yearTextField)
+
+        accessoryButton?.accessibilityLabel = cardTextFieldDelegate?.cardTextFieldShouldProvideAccessoryButtonAccessibilityLabel(self)
     }
     
     /**
