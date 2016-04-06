@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "Ipi-TI-Rgi"; */
+"Ipi-TI-Rgi.normalTitle" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "BUY NOW"; ObjectID = "XGf-R3-9Wl"; */
+"XGf-R3-9Wl.normalTitle" = "BUY NOW";
+
+/* Class = "UILabel"; text = "Please enter your credit card information for Checkout"; ObjectID = "XRC-Y1-VLm"; */
+"XRC-Y1-VLm.text" = "Please enter your credit card information for Checkout";
+
+/* Class = "UITextView"; text = "The 11-inch MacBook Air lasts up to 9 hours between charges and the 13-inch model lasts up to an incredible 12 hours. So from your morning coffee till your evening commute, you can work unplugged. When it’s time to kick back and relax, you can get up to 10 hours of iTunes movie playback on the 11-inch model and up to 12 hours on the 13-inch model. And with up to 30 days of standby time, you can go away for weeks and pick up right where you left off."; ObjectID = "fm4-5C-qEM"; */
+"fm4-5C-qEM.text" = "The 11-inch MacBook Air lasts up to 9 hours between charges and the 13-inch model lasts up to an incredible 12 hours. So from your morning coffee till your evening commute, you can work unplugged. When it’s time to kick back and relax, you can get up to 10 hours of iTunes movie playback on the 11-inch model and up to 12 hours on the 13-inch model. And with up to 30 days of standby time, you can go away for weeks and pick up right where you left off.";
+
+/* Class = "UIButton"; normalTitle = "BUY"; ObjectID = "iAI-hi-hV7"; */
+"iAI-hi-hV7.normalTitle" = "BUY";
+
+/* Class = "UILabel"; text = "MacBook Air"; ObjectID = "qSj-jg-p3c"; */
+"qSj-jg-p3c.text" = "MacBook Air";
+
+/* Class = "UITextField"; placeholder = "0000000000000000"; ObjectID = "xhV-mK-kcC"; */
+"xhV-mK-kcC.placeholder" = "0000000000000000";
