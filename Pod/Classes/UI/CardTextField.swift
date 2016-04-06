@@ -189,6 +189,9 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         return cardTypeRegister.cardTypeForNumber(number)
     }
     
+    /// The name of the localizable string file
+    private final let localizationStringFileName = "Localizable"
+    
     // MARK: - Initializers & view setup
     
     public required init?(coder aDecoder: NSCoder) {
@@ -247,6 +250,7 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         
         setupTextFieldDelegates()
         setupTextFieldAttributes()
+        setupAccessibilityLabels()
         setupTargetsForEditinBegin()
         setupAccessoryButton()
     }
@@ -280,6 +284,29 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         
         super.textColor = UIColor.clearColor()
         super.placeholder = nil
+    }
+    
+    /**
+     Adds voice over accessibility support for all text fields
+     */
+    private func setupAccessibilityLabels() {
+        setupAccessibilityLabelForTextField(numberInputTextField)
+        setupAccessibilityLabelForTextField(cvcTextField)
+        setupAccessibilityLabelForTextField(monthTextField)
+        setupAccessibilityLabelForTextField(yearTextField)
+    }
+    
+    /**
+     Adds voice over accessibility support for a particular text fields
+     
+     - parameter textField: a text field that needs support for voice over accessibility
+     */
+    private func setupAccessibilityLabelForTextField(textField: UITextField) {
+        let currentBundle = NSBundle(forClass: CardTextField.self)
+        textField.accessibilityLabel = NSLocalizedString(textField.accessibilityLabelLocalizationKey(),
+                                                         tableName: localizationStringFileName,
+                                                         bundle: currentBundle,
+                                                         comment: "Accessibility label for \(String(textField))")
     }
     
     private func setupTargetsForEditinBegin() {

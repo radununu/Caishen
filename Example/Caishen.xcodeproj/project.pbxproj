@@ -56,6 +56,10 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		9559D8D53C30F3FAC256766D /* Pods_Caishen_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caishen_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB2F628D1CB5D379004004E4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		AB2F628E1CB5D379004004E4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		AB2F628F1CB5D388004004E4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		AB2F62901CB5D388004004E4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		D16F00C251F96816CB5C0F5B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D308422F08FF13844BA17BF8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E2C5B500BD17E808EB601278 /* Pods_Caishen_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caishen_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -420,6 +424,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				08C34F4B1C971F6B008F57D8 /* Base */,
+				AB2F628D1CB5D379004004E4 /* zh-Hans */,
+				AB2F628F1CB5D388004004E4 /* de */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -428,6 +434,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				08C34F4D1C971F6B008F57D8 /* Base */,
+				AB2F628E1CB5D379004004E4 /* zh-Hans */,
+				AB2F62901CB5D388004004E4 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
