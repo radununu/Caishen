@@ -34,6 +34,7 @@ public struct Expiry: RawRepresentable {
 
     /**
      Creates a `CardExpiry` with the given string.
+     
      - parameter string: A string of the form MM/YYYY or MM/YY
      */
     public init?(string: String) {
@@ -69,8 +70,10 @@ public struct Expiry: RawRepresentable {
 
     /**
      Creates a CardExpiry with the given month and year as String.
+     
      - parameter month:     The month string (of numeric format MM).
      - parameter year:      The year string (of numeric format YY or YYYY).
+     
      - returns:             `nil`, if the expiration date could not be created because of invalid month or year strings.
      */
     public init?(month: String, year: String) {
@@ -83,8 +86,10 @@ public struct Expiry: RawRepresentable {
 
     /**
      Creates a CardExpiry with the given numeric month and year.
+     
      - parameter month: The month of the expiry.
      - parameter year: The year of the expiry.
+     
      - returns: nil, if month is not in the range of 1...12 or year is less than 2000.
      */
     public init?(month: UInt, year: UInt) {

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A text field which can be used to enter years and provides validation.
 public class YearInputTextField: DetailInputTextField {
     
     /**

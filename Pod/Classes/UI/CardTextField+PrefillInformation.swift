@@ -10,6 +10,14 @@ import UIKit
 
 public extension CardTextField {
     
+    /**
+     Fills all form fields of this card text field with the information provided and moves to card detail, if the provided card number was valid.
+     
+     - parameter cardNumber: The card number which should be shown in the number input field.
+     - parameter month:      The month that should be shown in the month input field.
+     - parameter year:       The year that should be shown in the year input field.
+     - parameter cvc:        The CVC that should be shown in the CVC input field.
+     */
     public func prefillCardInformation(cardNumber: String?, month: Int?, year: Int?, cvc: String?) {
         if let year = year {
             var trimmedYear = year

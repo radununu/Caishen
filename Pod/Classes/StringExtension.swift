@@ -48,6 +48,7 @@ extension String {
      
      - parameter fromInclusively: The index of the first character that should be included in the substring.
      - parameter toExclusively: The index of the last character that should no longer be included in the substring.
+     
      - returns: Substring starting with the character at index `fromInclusiveley` and ending before the character at index `toExclusively`.
     */
     subscript(fromInclusively: Int, toExclusively: Int) -> String? {

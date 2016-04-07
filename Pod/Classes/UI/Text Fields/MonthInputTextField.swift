@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A text field which can be used to enter months and provides validation and auto completion.
 public class MonthInputTextField: DetailInputTextField {
     
     /**

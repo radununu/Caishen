@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ A protocol to provide auto completion behavior of text.
+ */
 protocol AutoCompletingTextField {
     
     /**

@@ -98,8 +98,14 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         }
     }
     
+    /**
+     The label which is used as separator inbetween the text fields for month and year of the card expiry.
+     */
     @IBOutlet weak var slashLabel: UILabel!
     
+    /**
+     The view constraint which insets the card image view from its superview's leading edge.
+     */
     @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint?
     
     /**
@@ -112,9 +118,13 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
     }
     
     /**
-     Inset after the card type image view. Defaults to 4.0.
+     The view constraint which insets the card image view from the card number text field.
      */
     @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint?
+    
+    /**
+     Inset after the card type image view. Defaults to 4.0.
+     */
     @IBInspectable public var imageViewTrailingInset: CGFloat = 4.0 {
         didSet {
             imageViewTrailingConstraint?.constant = imageViewTrailingInset
@@ -282,6 +292,9 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         super.placeholder = nil
     }
     
+    /**
+     Adds a callback to `numberInputTextField`, `monthTextField` and `yearTextField` to show the card type image in `cardImageView` when editing on any of these text fields began. Adds a callback to cvcTextField to show the CVC image in this view in this case.
+     */
     private func setupTargetsForEditinBegin() {
         // Show the full number text field, if editing began on it
         numberInputTextField?.addTarget(self, action: #selector(moveNumberFieldRightAnimated), forControlEvents: UIControlEvents.EditingDidBegin)
@@ -292,10 +305,16 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         cvcTextField?.addTarget(self, action: #selector(showCVCImage), forControlEvents: .EditingDidBegin)
     }
     
+    /**
+     Function that is called when the user tapped on the optionally provided accessory button and performs its designated action.
+     */
     internal func buttonReceivedAction() {
         cardTextFieldDelegate?.cardTextFieldShouldProvideAccessoryAction(self)?()
     }
     
+    /**
+     Sets up the card text field's accessory button if one is provided.
+     */
     private func setupAccessoryButton() {
         guard let _ = cardTextFieldDelegate?.cardTextFieldShouldProvideAccessoryAction(self) else {
             accessoryButton?.alpha = 0
@@ -382,6 +401,9 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
     
     // MARK: - Card 
     
+    /**
+     Displays the card image for the currently detected card type in the card text field's `cardImageView`.
+     */
     internal func showCardImage() {
         let cardType = cardTypeRegister.cardTypeForNumber(numberInputTextField.cardNumber)
         let cardTypeImage = cardTypeImageStore.imageForCardType(cardType)
@@ -389,6 +411,9 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         cardImageView?.image = cardTypeImage
     }
     
+    /**
+     Displays the CVC image for the currently detected card type in the card text field's `cardImageView`.
+     */
     internal func showCVCImage() {
         let cardType = cardTypeRegister.cardTypeForNumber(numberInputTextField.cardNumber)
         let cvcImage = cardTypeImageStore.cvcImageForCardType(cardType)

@@ -1,5 +1,5 @@
 //
-//  CardNumberInputTextFieldDelegate.swift
+//  NumberInputTextFieldDelegate.swift
 //  Caishen
 //
 //  Created by Daniel Vancura on 2/24/16.
@@ -7,17 +7,21 @@
 //
 
 /**
- The delegate protocol for a `CardNumberInputTextField`. The delegate gets notified about changes to the text, as well as an update, if a valid card number has been entered.
+ The delegate protocol for a `NumberInputTextField`. The delegate gets notified about changes to the text, as well as an update, if a valid card number has been entered.
  */
 @objc
 public protocol NumberInputTextFieldDelegate {
     /**
-     Called by `cardNumberTextField` when the user entered a valid card number.
+     Called when the user entered a valid card number.
      
-     - parameter cardNumberTextField: The CardNumberTextField that was used by the user to enter a card number.
-     - parameter cardNumber: The card number the user entered.
+     - parameter numberInputTextField: The `NumberInputTextField` that was used to enter a card number.
      */
-    func numberInputTextFieldDidComplete(cardNumberTextField: NumberInputTextField)
+    func numberInputTextFieldDidComplete(numberInputTextField: NumberInputTextField)
     
-    func numberInputTextFieldDidChangeText(cardNumberTextField: NumberInputTextField)
+    /**
+     Called when the user changed the text in the `NumberInputTextField`.
+     
+     - parameter numberInputTextField: The `NumberInputTextField` whose text was changed.
+     */
+    func numberInputTextFieldDidChangeText(numberInputTextField: NumberInputTextField)
 }

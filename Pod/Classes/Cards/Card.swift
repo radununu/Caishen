@@ -37,6 +37,7 @@ public struct Card {
      - parameter number: The string value of the card number.
      - parameter cvc: The string value of the card verification code.
      - parameter expiry: the string value of the expiry date (example: 09/2018)
+     
      - returns: A card with the provided parameters.
      */
     public static func create(number: String, cardVerificationCode cvc: String, expiry: String) throws -> Card {

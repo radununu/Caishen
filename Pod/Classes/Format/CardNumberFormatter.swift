@@ -8,13 +8,20 @@
 
 import UIKit
 
+/**
+ A `CardNumberFormatter` provides the formatting of card numbers based on their card type.
+ */
 public final class CardNumberFormatter {
 
+    /// The separator which is used to separate different groups of a card number.
     public let separator: String
+    
+    /// The card type register which is used to access accepted card types. Formatting will only take place for card numbers whose card type can be found in this property.
     private var cardTypeRegister: CardTypeRegister
     
     /**
      Creates a `CardNumberFormatter` with the provided separator for formatting.
+     
      - parameter separator: The separator that is used for grouping the card number.
      */
     public init(cardTypeRegister: CardTypeRegister, separator: String = " ") {
@@ -24,7 +31,9 @@ public final class CardNumberFormatter {
     
     /**
      This function removes the format of a card number string that has been formatted with the same instance of a `CardNumberFormatter`.
+     
      - parameter cardNumberString: The card number string representation that has previously been formatted with `self`.
+     
      - returns: The unformatted card number string representation.
      */
     public func unformattedCardNumber(cardNumberString: String) -> String {
@@ -33,9 +42,9 @@ public final class CardNumberFormatter {
     
     /**
      Formats the given card number string based on the detected card type.
-     - seealso: CardType.CardTypeForNumber
-     - seealso: CardType.numberGroupingForCardType
+     
      - parameter cardNumberString: The card number's unformatted string representation.
+     
      - returns: Formatted card number string.
      */
     public func formattedCardNumber(cardNumberString: String) -> String {
@@ -63,7 +72,9 @@ public final class CardNumberFormatter {
     
     /**
      Computes the index of the cursor position after unformatting the textField's content.
+     
      - parameter textField: The textField containing a formatted string.
+     
      - returns: The index of the cursor position or nil, if no selected text was found.
      */
     public func cursorPositionAfterUnformattingText(text: String, inTextField textField: UITextField) -> Int? {
@@ -92,6 +103,16 @@ public final class CardNumberFormatter {
         return position - componentContainingCursor * self.separator.characters.count
     }
     
+    /**
+     Computes the index of a character in an unformatted string that is equivalent to `index` in `formattedString`.
+     
+     **Example:** Index **7** in *"0123 - 4"* (pointing at *"4"*) is equal to index **4** in the unformatted string *"01234"*.
+     
+     - parameter index:           The index in the formatted string whose equivalent in the unformatted string should be determined.
+     - parameter formattedString: The formatted string.
+     
+     - returns: The index in an unformatted string that is equivalent to `index` in `formattedString`.
+     */
     private func indexInUnformattedString(index: Int, formattedString: String) -> Int {
         var componentWithIndex = 0
         var charCount = 0
@@ -108,6 +129,16 @@ public final class CardNumberFormatter {
         return index - componentWithIndex * self.separator.characters.count
     }
     
+    /**
+     Computes the index of a character in a formatted string that is equivalent to `index` in `unformattedString`.
+     
+     **Example:** Index **4** in *"01234"* (pointing at *"4"*) is equal to index **7** in the formatted string *"0123 - 4"*.
+     
+     - parameter index:           The index in the unformatted string whose equivalent in the formatted string should be determined.
+     - parameter unformattedString: The unformatted string.
+     
+     - returns: The index in a formatted string that is equivalent to `index` in `unformattedString`.
+     */
     private func indexInFormattedString(index: Int, unformattedString: String) -> Int {
         var charIdx = 0
         let formattedString = self.formattedCardNumber(unformattedString)
@@ -126,6 +157,13 @@ public final class CardNumberFormatter {
         return 0
     }
     
+    /**
+     Replaces the specified range of text in the provided text field with the given string and makes sure that the result is formatted.
+     
+     - parameter range:     The range of text which should be replaced.
+     - parameter textField: The text field whose text should be changed.
+     - parameter string:    The new string. This might be unformatted or badly formatted and will be formatted properly before being inserted into `textField`.
+     */
     public func replaceRangeFormatted(range: NSRange, inTextField textField: UITextField, withString string: String) {
         let newValueUnformatted = self.unformattedCardNumber(NSString(string: textField.text ?? "").stringByReplacingCharactersInRange(range, withString: string))
         let oldValueUnformatted = self.unformattedCardNumber(textField.text ?? "")
@@ -151,8 +189,10 @@ public final class CardNumberFormatter {
     
     /**
      Splits a string with a given regular expression and returns all matches in an array of separate strings.
+     
      - parameter string: The string that is to be split.
      - parameter regex: The regular expression that is used to search for matches in `string`.
+     
      - returns: An array of all matches found in string for `regex`.
      */
     private func splitString(string: String, withRegex regex: NSRegularExpression) -> [String] {

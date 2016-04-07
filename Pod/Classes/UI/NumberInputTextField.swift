@@ -54,7 +54,7 @@ public class NumberInputTextField: StylizedTextField {
         }
     }
     
-    
+    /// Variable to store the text color of this text field. The actual property `textColor` (as inherited from UITextField) will change based on whether or not the entered card number was invalid and may be `invalidInputColor` in this case. In order to always set and retreive the actual text color for this text field, it is saved and retreived to and from this private property.
     private var _textColor: UIColor?
     override public var textColor: UIColor? {
         get {
@@ -129,6 +129,11 @@ public class NumberInputTextField: StylizedTextField {
         return false
     }
     
+    /**
+     Prefills the card number. The entered card number will only be prefilled if it is at least partially valid and will be displayed formatted.
+     
+     - parameter cardNumber: The card number which should be displayed in `self`.
+     */
     public func prefillInformation(cardNumber: String) {
         let validCharacters: Set<Character> = Set("0123456789".characters)
         let unformattedCardNumber = String(cardNumber.characters.filter({validCharacters.contains($0)}))
@@ -147,9 +152,12 @@ public class NumberInputTextField: StylizedTextField {
     
     /**
      Computes the rect that contains the specified text range within the text field.
+     
      - precondition: This function will only work, when `textField` is the first responder. If `textField` is not first responder, `textField.beginningOfDocument` will not be initialized and this function will return nil.
+     
      - parameter range: The range of the text in the text field whose bounds should be detected.
      - parameter textField: The text field containing the text.
+     
      - returns: A rect indicating the location and bounds of the text within the text field, or nil, if an invalid range has been entered.
      */
     private func rectForTextRange(range: NSRange, inTextField textField: UITextField) -> CGRect? {
@@ -168,6 +176,7 @@ public class NumberInputTextField: StylizedTextField {
     
     /**
      - precondition: This function will only work, when `self` is the first responder. If `self` is not first responder, `self.beginningOfDocument` will not be initialized and this function will return nil.
+     
      - returns: The CGRect in `self` that contains the last group of the card number.
      */
     public func rectForLastGroup() -> CGRect? {

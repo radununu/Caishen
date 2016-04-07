@@ -78,6 +78,9 @@ public struct CardValidationResult: OptionSetType {
 
 extension CardValidationResult: CustomStringConvertible {
 
+    /**
+     - returns: An array of strings which contain textual descriptions of the validation result in `self`.
+     */
     public func toString() -> [String] {
         var strings: [String] = []
         if self == .Valid {

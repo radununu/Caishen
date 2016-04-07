@@ -193,7 +193,9 @@ extension CardType {
 
     /**
      Checks whether or not a card number is partially valid.
+     
      - parameter cardNumber: The card number which should be checked for partial validity.
+     
      - returns: Valid, if 
         - the card validation succeeded 
         - or the card validation failed because of the Luhn test or insufficient card number length (both of which are irrelevant for incomplete card numbers).
@@ -214,8 +216,10 @@ extension CardType {
 
     /**
      Helper method for `lengthMatchesType` to check the actual length of a card number against the expected length.
+     
      - parameter actualLength: The length of a card number that is to be validated.
      - parameter expectedLength: The expected length for the card number's card type.
+     
      - returns: CardValidationResult.Valid if the lengths match, CardValidationResult.NumberDoesNotMatchType otherwise.
      */
     private func testLength(actualLength: Int, assumingLength expectedLength: Int) -> CardValidationResult {

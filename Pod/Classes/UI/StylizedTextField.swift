@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A text field that provides additional UI customization.
 @IBDesignable
 public class StylizedTextField: UITextField, UITextFieldDelegate {
     
