@@ -82,6 +82,13 @@ public class StylizedTextField: UITextField, UITextFieldDelegate {
         self.delegate = self
     }
     
+    // MARK: - Override functions
+    
+    override public func becomeFirstResponder() -> Bool {
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+        return super.becomeFirstResponder()
+    }
+    
     public override func drawRect(rect: CGRect) {
         if text == "" || text == UITextField.emptyTextFieldCharacter {
             super.drawPlaceholderInRect(rect)
