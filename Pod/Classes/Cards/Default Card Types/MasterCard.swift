@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ *  The native supported card type of MasterCard
+ */
 public struct MasterCard: CardType {
     
     public let name = "MasterCard"

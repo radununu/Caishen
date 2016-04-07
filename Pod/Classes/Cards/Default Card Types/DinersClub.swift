@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ *  The native supported card type of Diners Club
+ */
 public struct DinersClub: CardType {
     
     public let name = "Diners Club"
