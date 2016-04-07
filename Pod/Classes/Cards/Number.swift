@@ -8,12 +8,16 @@
 
 import Foundation
 
+/**
+ A Number represents the card number of a payment card.
+ */
 public struct Number: RawRepresentable {
 
     public typealias RawValue = String
 
     public let rawValue: String
 
+    /// The number of digits in `self`.
     public var length: Int {
         return rawValue.characters.count
     }

@@ -8,10 +8,15 @@
 
 import Foundation
 
+/**
+ A CVC (or Card Verification Code) is a security mechanism for online purchases with payment cards.
+ - important: You should never save and/or autofill the CVC for a card, as this will void its purpose as a security mechanism.
+ */
 public struct CVC: RawRepresentable {
 
     public typealias RawValue = String
 
+    /// The count of digits in the CVC.
     public var length: Int {
         return rawValue.characters.count
     }
@@ -27,6 +32,11 @@ public struct CVC: RawRepresentable {
         self.rawValue = rawValue
     }
 
+    /**
+     Parses the CVC to an integer.
+     
+     - returns: The integer value of the CVC or `nil` if the CVC could not be parsed as integer.
+     */
     public func toInt() -> Int? {
         return Int(rawValue)
     }
