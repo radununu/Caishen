@@ -54,6 +54,29 @@ public class NumberInputTextField: StylizedTextField {
         }
     }
     
+    public override var accessibilityValue: String? {
+        set {
+            
+        }
+        get {
+            // In order to read digits of the card number one by one, return them as "4 1 1 ..." separated by single spaces and commas inbetween groups for pauses
+            var singleDigits: [Character] = []
+            var lastCharWasReplacedWithComma = false
+            text?.characters.forEach({
+                if !"0123456789".characters.contains($0) {
+                    if !lastCharWasReplacedWithComma {
+                        singleDigits.append(",")
+                        lastCharWasReplacedWithComma = true
+                    } else {
+                        lastCharWasReplacedWithComma = false
+                    }
+                }
+                singleDigits.append($0)
+                singleDigits.append(" ")
+            })
+            return String(singleDigits)
+        }
+    }
     
     private var _textColor: UIColor?
     override public var textColor: UIColor? {
