@@ -20,19 +20,26 @@ public enum Localization: String {
     case invalidCardNumber = "INVALID_CARD_NUMBER"
     case invalidExpirationDate = "INVALID_EXPIRATION_DATE"
     
-    static func accessibilityLabelForTextField(textField: UITextField) -> String? {
+    static func accessibilityLabelForTextField(textField: UITextField, comment: String?) -> String? {
         switch textField {
         case is NumberInputTextField:
-            return Localization.NumberInputTextFieldAccessibilityLabel.rawValue
+            return Localization.NumberInputTextFieldAccessibilityLabel.localizedStringWithComment(comment)
         case is CVCInputTextField:
-            return Localization.CVCInputTextFieldAccessibilityLabel.rawValue
+            return Localization.CVCInputTextFieldAccessibilityLabel.localizedStringWithComment(comment)
         case is MonthInputTextField:
-            return Localization.MonthInputTextFieldAccessibilityLabel.rawValue
+            return Localization.MonthInputTextFieldAccessibilityLabel.localizedStringWithComment(comment)
         case is YearInputTextField:
-            return Localization.YearInputTextFieldAccessibilityLabel.rawValue
+            return Localization.YearInputTextFieldAccessibilityLabel.localizedStringWithComment(comment)
         default:
             return nil
         }
+    }
+    
+    func localizedStringWithComment(comment: String?) -> String {
+        return NSLocalizedString(self.rawValue,
+                                 tableName: Localization.StringsFileName.rawValue,
+                                 bundle: NSBundle(forClass: CardTextField.self),
+                                 comment: comment ?? "")
     }
 }
 

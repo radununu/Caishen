@@ -44,9 +44,6 @@ public protocol CardTextFieldDelegate {
 
 public extension CardTextFieldDelegate {
     public func cardTextFieldShouldProvideAccessoryButtonAccessibilityLabel(cardTextField: CardTextField) -> String? {
-        return NSLocalizedString(Localization.AccessoryButtonAccessibilityLabel.rawValue,
-                                tableName: Localization.StringsFileName.rawValue,
-                                bundle: NSBundle(forClass: CardTextField.self),
-                                comment: "Accessibility label for accessory button")
+        return Localization.AccessoryButtonAccessibilityLabel.localizedStringWithComment("Accessibility label for accessory button")
     }
 }

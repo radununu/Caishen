@@ -100,10 +100,7 @@ extension CardTextField: CardInfoTextFieldDelegate {
      Notify user the entered expiration date is invalid when accessibility is turned on
      */
     @objc private func notifyUserExpirationDateInvalidityInVoiceOverAccessibility() {
-        let localizedString = NSLocalizedString(Localization.invalidExpirationDate.rawValue,
-                                                tableName: Localization.StringsFileName.rawValue,
-                                                bundle: NSBundle(forClass: CardTextField.self),
-                                                comment: "The expiration date entered is not valid")
+        let localizedString = Localization.invalidExpirationDate.localizedStringWithComment("The expiration date entered is not valid")
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, localizedString)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
