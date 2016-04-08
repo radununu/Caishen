@@ -228,7 +228,11 @@ public class NumberInputTextField: StylizedTextField {
      Notify user the entered card number is invalid when accessibility is turned on
      */
     @objc private func notifyUserCardNumberInvalidityInVoiceOverAccessibility() {
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Invalid card number")
+        let localizedString = NSLocalizedString(Localization.invalidCardNumber.rawValue,
+                                                tableName: Localization.StringsFileName.rawValue,
+                                                bundle: NSBundle(forClass: CardTextField.self),
+                                                comment: "The expiration date entered is not valid")
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, localizedString)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
