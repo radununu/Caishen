@@ -13,7 +13,9 @@ extension CardTextField: CardInfoTextFieldDelegate {
     public func textField(textField: UITextField, didEnterValidInfo: String) {
         updateNumberColor()
         notifyDelegate()
-        selectNextTextField(textField, prefillText: nil)
+        if expirationDateIsValid() {
+            selectNextTextField(textField, prefillText: nil)
+        }
     }
     
     public func textField(textField: UITextField, didEnterPartiallyValidInfo: String) {
@@ -51,6 +53,8 @@ extension CardTextField: CardInfoTextFieldDelegate {
             if monthTextField?.textColor != invalidInputColor && yearTextField?.textColor != invalidInputColor {
                 monthTextField?.textColor = invalidInputColor
                 yearTextField?.textColor = invalidInputColor
+
+                addAccessibilityNotificationObserverToNotifyUserExpirationDateInvalidity()
             }
         } else {
             monthTextField?.textColor = numberInputTextField?.textColor ?? UIColor.blackColor()
@@ -73,5 +77,17 @@ extension CardTextField: CardInfoTextFieldDelegate {
      */
     private func expirationDateIsValid() -> Bool {
         return card.expiryDate == Expiry.invalid || card.expiryDate.rawValue.timeIntervalSinceNow > 0
+    }
+
+    private func addAccessibilityNotificationObserverToNotifyUserExpirationDateInvalidity() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(notifyUserExpirationDateInvalidityInVoiceOverAccessibility),
+                                                         name: UIAccessibilityAnnouncementDidFinishNotification,
+                                                         object: nil)
+    }
+
+    @objc private func notifyUserExpirationDateInvalidityInVoiceOverAccessibility() {
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Invalid expiration date")
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
