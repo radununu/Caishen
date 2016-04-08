@@ -189,9 +189,6 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         return cardTypeRegister.cardTypeForNumber(number)
     }
     
-    /// The name of the localizable string file
-    private final let localizationStringFileName = "Localizable"
-    
     // MARK: - Initializers & view setup
     
     public required init?(coder aDecoder: NSCoder) {
@@ -250,9 +247,9 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         
         setupTextFieldDelegates()
         setupTextFieldAttributes()
-        setupAccessibilityLabels()
         setupTargetsForEditinBegin()
         setupAccessoryButton()
+        setupAccessibilityLabels()
     }
     
     private func setupTextFieldDelegates() {
@@ -294,8 +291,6 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
         setupAccessibilityLabelForTextField(cvcTextField)
         setupAccessibilityLabelForTextField(monthTextField)
         setupAccessibilityLabelForTextField(yearTextField)
-
-        accessoryButton?.accessibilityLabel = cardTextFieldDelegate?.cardTextFieldShouldProvideAccessoryButtonAccessibilityLabel(self)
     }
     
     /**
@@ -305,8 +300,8 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
      */
     private func setupAccessibilityLabelForTextField(textField: UITextField) {
         let currentBundle = NSBundle(forClass: CardTextField.self)
-        textField.accessibilityLabel = NSLocalizedString(textField.accessibilityLabelLocalizationKey(),
-                                                         tableName: localizationStringFileName,
+        textField.accessibilityLabel = NSLocalizedString(Localization.accessibilityLabelForTextField(textField) ?? "",
+                                                         tableName: Localization.StringsFileName.rawValue,
                                                          bundle: currentBundle,
                                                          comment: "Accessibility label for \(String(textField))")
     }
@@ -340,6 +335,8 @@ public class CardTextField: UITextField, NumberInputTextFieldDelegate {
             accessoryButton?.setImage(scaledImage, forState: .Normal)
             accessoryButton?.tintColor = numberInputTextField?.textColor
         }
+        
+        accessoryButton?.accessibilityLabel = cardTextFieldDelegate?.cardTextFieldShouldProvideAccessoryButtonAccessibilityLabel(self)
     }
     
     // MARK: - View lifecycle
