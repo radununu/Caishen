@@ -207,6 +207,16 @@ public class NumberInputTextField: StylizedTextField {
         return rectForTextRange(NSMakeRange(textLength - lastGroupLength, lastGroupLength), inTextField: self)
     }
     
+    // MARK: Accessibility
+    
+    /**
+     Add an observer to listen to the event of UIAccessibilityAnnouncementDidFinishNotification, and then post an accessibility
+     notification to user that the entered card number is not valid.
+     
+     The reason why can't we just post an accessbility notification is that only the last accessibility notification would be read to users.
+     As each time users input something there will be an accessibility notification from the system which will always replace what we have
+     posted here. Thus we need to listen to the notification from the system first, wait until it is finished, and post ours afterwards.
+     */
     private func addAccessibilityNotificationObserverToNotifyUserCardNumberInvalidity() {
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(notifyUserCardNumberInvalidityInVoiceOverAccessibility),
@@ -214,6 +224,9 @@ public class NumberInputTextField: StylizedTextField {
                                                          object: nil)
     }
     
+    /**
+     Notify user the entered card number is invalid when accessibility is turned on
+     */
     @objc private func notifyUserCardNumberInvalidityInVoiceOverAccessibility() {
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Invalid card number")
         NSNotificationCenter.defaultCenter().removeObserver(self)
