@@ -133,12 +133,15 @@ public class NumberInputTextField: StylizedTextField {
             numberInputTextFieldDelegate?.numberInputTextFieldDidComplete(self)
             super.textColor = _textColor
             return false
+        } else {
+            notifyUserCardNumberInvalidityInVoiceOverAccessibility()
         }
 
         let newLengthComplete =
             parsedCardNumber.length == cardTypeRegister.cardTypeForNumber(parsedCardNumber).maxLength
 
         if newLengthComplete && newValidation != .Valid {
+            addAccessibilityNotificationObserverToNotifyUserCardNumberInvalidity()
         } else if newValidation == .Valid {
             numberInputTextFieldDelegate?.numberInputTextFieldDidComplete(self)
         }
@@ -202,5 +205,17 @@ public class NumberInputTextField: StylizedTextField {
         }
         
         return rectForTextRange(NSMakeRange(textLength - lastGroupLength, lastGroupLength), inTextField: self)
+    }
+    
+    private func addAccessibilityNotificationObserverToNotifyUserCardNumberInvalidity() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(notifyUserCardNumberInvalidityInVoiceOverAccessibility),
+                                                         name: UIAccessibilityAnnouncementDidFinishNotification,
+                                                         object: nil)
+    }
+    
+    @objc private func notifyUserCardNumberInvalidityInVoiceOverAccessibility() {
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Invalid card number")
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
