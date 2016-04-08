@@ -44,14 +44,34 @@ extension CardTextField: CardInfoTextFieldDelegate {
     }
     
     private func updateNumberColor() {
-        // if the date is Expiry.invalid, it means that no real date is calculated yet
-        // if the calculated real date is in the past, set the text color for the date to `invalidNumberColor`
-        if card.expiryDate.rawValue.timeIntervalSinceNow < 0 && card.expiryDate != Expiry.invalid {
-            monthTextField?.textColor = invalidInputColor ?? UIColor.redColor()
-            yearTextField?.textColor = invalidInputColor ?? UIColor.redColor()
+        // if the expiration date is not valid, set the text color for the date to `invalidNumberColor`
+        if !expirationDateIsValid() {
+            let invalidInputColor = self.invalidInputColor ?? UIColor.redColor()
+            // if the expiration date text fields haven't been assigned invalid input color
+            if monthTextField?.textColor != invalidInputColor && yearTextField?.textColor != invalidInputColor {
+                monthTextField?.textColor = invalidInputColor
+                yearTextField?.textColor = invalidInputColor
+            }
         } else {
             monthTextField?.textColor = numberInputTextField?.textColor ?? UIColor.blackColor()
             yearTextField?.textColor = numberInputTextField?.textColor ?? UIColor.blackColor()
         }
+    }
+
+    /**
+     return the validity of the entered expiration date
+
+     if the expiration date is Expiry.invalid, it means that no real date is calculated yet,
+     then return true because we do not know if the expiration date is valid or not.
+
+     if the expiration date is fully entered (and then calculated automatically) and is a time in the future,
+     then return true because we know that it is a valid expiration date
+
+     otherwise, return false
+
+     - returns: the validity of the entered expiration date
+     */
+    private func expirationDateIsValid() -> Bool {
+        return card.expiryDate == Expiry.invalid || card.expiryDate.rawValue.timeIntervalSinceNow > 0
     }
 }
