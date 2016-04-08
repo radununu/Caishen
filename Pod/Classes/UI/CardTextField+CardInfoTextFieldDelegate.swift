@@ -83,7 +83,7 @@ extension CardTextField: CardInfoTextFieldDelegate {
     
     /**
      Add an observer to listen to the event of UIAccessibilityAnnouncementDidFinishNotification, and then post an accessibility
-     notification to user that the entered expiration date is not valid. 
+     notification to user that the entered expiration date has already expired.
      
      The reason why can't we just post an accessbility notification is that only the last accessibility notification would be read to users.
      As each time users input something there will be an accessibility notification from the system which will always replace what we have 
@@ -97,7 +97,7 @@ extension CardTextField: CardInfoTextFieldDelegate {
     }
 
     /**
-     Notify user the entered expiration date is invalid when accessibility is turned on
+     Notify user the entered expiration date has already expired when accessibility is turned on
      */
     @objc private func notifyUserExpirationDateInvalidityInVoiceOverAccessibility() {
         let localizedString = Localization.invalidExpirationDate.localizedStringWithComment("The expiration date entered is not valid")
