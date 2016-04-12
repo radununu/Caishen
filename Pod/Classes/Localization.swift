@@ -20,6 +20,8 @@ public enum Localization: String {
     case invalidCardNumber = "INVALID_CARD_NUMBER"
     case invalidExpirationDate = "INVALID_EXPIRATION_DATE"
     
+    case cardType = "CARD_TYPE"
+    
     static func accessibilityLabelForTextField(textField: UITextField, comment: String?) -> String? {
         switch textField {
         case is NumberInputTextField:

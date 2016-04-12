@@ -55,9 +55,6 @@ public class NumberInputTextField: StylizedTextField {
     }
     
     public override var accessibilityValue: String? {
-        set {
-            
-        }
         get {
             // In order to read digits of the card number one by one, return them as "4 1 1 ..." separated by single spaces and commas inbetween groups for pauses
             var singleDigits: [Character] = []
@@ -75,7 +72,16 @@ public class NumberInputTextField: StylizedTextField {
                 singleDigits.append(" ")
             })
             return String(singleDigits)
+                + ". "
+                + NSLocalizedString(Localization.cardType.rawValue,
+                                    tableName: Localization.StringsFileName.rawValue,
+                                    bundle: NSBundle(forClass: CardTextField.self),
+                                    comment: "Description for detected card type.")
+                + ": "
+                + cardTypeRegister.cardTypeForNumber(cardNumber).name
         }
+        
+        set {  }
     }
     
     private var _textColor: UIColor?
