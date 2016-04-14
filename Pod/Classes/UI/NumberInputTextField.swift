@@ -73,10 +73,7 @@ public class NumberInputTextField: StylizedTextField {
             })
             return String(singleDigits)
                 + ". "
-                + NSLocalizedString(Localization.cardType.rawValue,
-                                    tableName: Localization.StringsFileName.rawValue,
-                                    bundle: NSBundle(forClass: CardTextField.self),
-                                    comment: "Description for detected card type.")
+                + Localization.CardType.localizedStringWithComment("Description for detected card type.")
                 + ": "
                 + cardTypeRegister.cardTypeForNumber(cardNumber).name
         }
@@ -140,14 +137,14 @@ public class NumberInputTextField: StylizedTextField {
             super.textColor = _textColor
             return false
         } else {
-            notifyUserCardNumberInvalidityInVoiceOverAccessibility()
+            notifyNumberInvalidity()
         }
 
         let newLengthComplete =
             parsedCardNumber.length == cardTypeRegister.cardTypeForNumber(parsedCardNumber).maxLength
 
         if newLengthComplete && newValidation != .Valid {
-            addAccessibilityNotificationObserverToNotifyUserCardNumberInvalidity()
+            addNumberInvalidityObserver()
         } else if newValidation == .Valid {
             numberInputTextFieldDelegate?.numberInputTextFieldDidComplete(self)
         }
@@ -223,9 +220,9 @@ public class NumberInputTextField: StylizedTextField {
      As each time users input something there will be an accessibility notification from the system which will always replace what we have
      posted here. Thus we need to listen to the notification from the system first, wait until it is finished, and post ours afterwards.
      */
-    private func addAccessibilityNotificationObserverToNotifyUserCardNumberInvalidity() {
+    private func addNumberInvalidityObserver() {
         NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(notifyUserCardNumberInvalidityInVoiceOverAccessibility),
+                                                         selector: #selector(notifyNumberInvalidity),
                                                          name: UIAccessibilityAnnouncementDidFinishNotification,
                                                          object: nil)
     }
@@ -233,11 +230,8 @@ public class NumberInputTextField: StylizedTextField {
     /**
      Notify user the entered card number is invalid when accessibility is turned on
      */
-    @objc private func notifyUserCardNumberInvalidityInVoiceOverAccessibility() {
-        let localizedString = NSLocalizedString(Localization.invalidCardNumber.rawValue,
-                                                tableName: Localization.StringsFileName.rawValue,
-                                                bundle: NSBundle(forClass: CardTextField.self),
-                                                comment: "The expiration date entered is not valid")
+    @objc private func notifyNumberInvalidity() {
+        let localizedString = Localization.InvalidCardNumber.localizedStringWithComment("The expiration date entered is not valid")
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, localizedString)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }

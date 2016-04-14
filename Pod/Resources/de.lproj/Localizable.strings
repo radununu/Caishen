@@ -8,6 +8,7 @@
 
 "ACCESSORY_BUTTON_ACCESSIBILITY_LABEL" = "Zusatz";
 
+"CARD_TYPE" = "Kartentyp";
 "CVC_TEXTFIELD_ACCESSIBILITY_LABEL" = "Kartenprüfwert";
 
 "INVALID_CARD_NUMBER" = "Ungültige Kartennummer";
@@ -18,5 +19,3 @@
 "NUMBER_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL" = "Kartennummer";
 
 "YEAR_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL" = "Verfallsdatum Jahr";
-
-"CARD_TYPE" = "Kartentyp";

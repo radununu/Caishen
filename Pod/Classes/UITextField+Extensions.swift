@@ -19,25 +19,5 @@ internal extension UITextField {
     internal static var emptyTextFieldCharacter: String {
         return "\u{202F}"
     }
-
-    /**
-     Retrieve the key for the accessibility label string of the current text field in NSLocalizedString
-     
-     - returns: the key in NSLocalizedString for the text field
-     */
-    internal func accessibilityLabelLocalizationKey() -> String {
-        switch self {
-        case is NumberInputTextField:
-            return "NUMBER_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL"
-        case is CVCInputTextField:
-            return "CVC_TEXTFIELD_ACCESSIBILITY_LABEL"
-        case is MonthInputTextField:
-            return "MONTH_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL"
-        case is YearInputTextField:
-            return "YEAR_INPUT_TEXTFIELD_ACCESSIBILITY_LABEL"
-        default:
-            return ""
-        }
-    }
 }
 
