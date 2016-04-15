@@ -60,7 +60,7 @@ public class NumberInputTextField: StylizedTextField {
             var singleDigits: [Character] = []
             var lastCharWasReplacedWithComma = false
             text?.characters.forEach({
-                if !"0123456789".characters.contains($0) {
+                if !$0.isNumeric() {
                     if !lastCharWasReplacedWithComma {
                         singleDigits.append(",")
                         lastCharWasReplacedWithComma = true
@@ -159,8 +159,7 @@ public class NumberInputTextField: StylizedTextField {
     }
     
     public func prefillInformation(cardNumber: String) {
-        let validCharacters: Set<Character> = Set("0123456789".characters)
-        let unformattedCardNumber = String(cardNumber.characters.filter({validCharacters.contains($0)}))
+        let unformattedCardNumber = String(cardNumber.characters.filter({$0.isNumeric()}))
         let cardNumber = Number(rawValue: unformattedCardNumber)
         let type = cardTypeRegister.cardTypeForNumber(cardNumber)
         let numberPartiallyValid = type.checkCardNumberPartiallyValid(cardNumber) == .Valid

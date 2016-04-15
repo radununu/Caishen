@@ -35,7 +35,7 @@ public struct Expiry: RawRepresentable {
      */
     public init?(string: String) {
         // Make sure that there is only one non-numeric separation character in the entire string
-        guard string.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "0123456789")).characters.count == 1 else {
+        guard string.stringByTrimmingCharactersInSet(NSCharacterSet.decimalDigitCharacterSet()).characters.count == 1 else {
             return nil
         }
         

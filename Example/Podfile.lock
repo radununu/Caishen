@@ -1,6 +1,6 @@
 PODS:
   - Caishen (1.1.0)
-  - CardIO (5.3.1)
+  - CardIO (5.3.2)
 
 DEPENDENCIES:
   - Caishen (from `../`)
@@ -12,6 +12,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Caishen: bdd24307f60141d8218c874644224de15d64bd3f
-  CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
+  CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
 
 COCOAPODS: 0.39.0

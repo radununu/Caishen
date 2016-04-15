@@ -44,6 +44,12 @@ extension String {
      - returns: True if this string contains only digits.
      */
     func isNumeric() -> Bool {
-        return characters.reduce(true, combine: { return $0 && "0123456789".characters.contains($1)})
+        return characters.reduce(true, combine: { (result, value) in
+            let string = String(value)
+            guard let firstChar = string.utf16.first else {
+                return result
+            }
+            return result && NSCharacterSet.decimalDigitCharacterSet().characterIsMember(firstChar)}
+        )
     }
 }
