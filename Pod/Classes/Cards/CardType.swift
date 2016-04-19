@@ -68,13 +68,7 @@ public protocol CardType {
      
      - parameter number: The card number.
      
-     - returns: `CardValidationResult.Valid` if the card has been validated or:
-        - `.NumberDoesNotMatchType`:  The card number's Issuer Identification Number does not match `self`.
-        - `.NumberIncomplete`:        The card number is incomplete and one or more digits are missing.
-        - `.NumberIsNotNumeric`:      The card number contains invalid characters.
-        - `.LuhnTestFailed`:          The Luhn algorithm test failed.
-        - `.UnknownType`:             The card number is of an unknown card type.
-        - `.NumberTooLong`:           The card number contains more digits than required.
+     - returns: The result of the card number validation.
      */
     func validateNumber(number: Number) -> CardValidationResult
 
@@ -83,13 +77,13 @@ public protocol CardType {
      
      - parameter expiry: The card's expiry.
      
-     - returns: `CardValidationResult.Valid` if the card has not expired or:
-        - `.InvalidExpiry`:         The expiration date has an invalid format.
-        - `.CardExpired`:           The card has already expired.
+     - returns: The result of the card expiration date validation.
      */
     func validateExpiry(expiry: Expiry) -> CardValidationResult 
 
     /**
+     Returns whether or not `self` is equal to another `CardType`.
+     
      - parameter cardType: Another card type to check equality with.
      
      - returns: Whether or not `self` is equal to the provided `cardType`.

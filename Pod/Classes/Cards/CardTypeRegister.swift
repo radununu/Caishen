@@ -12,13 +12,7 @@ import UIKit
 public class CardTypeRegister {
     
     /**
-     The default card type register, shared among all CardTextFields. Initially, this card type register contains:
-     - Caishen.AmericanExpress
-     - Caishen.DinersClub
-     - Caishen.Discover
-     - Caishen.JCB
-     - Caishen.MasterCard
-     - Caishen.Visa
+     The default card type register, shared among all CardTextFields.
      */
     public static let sharedCardTypeRegister = CardTypeRegister()
     
